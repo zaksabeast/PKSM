@@ -6,6 +6,8 @@
   "transferEdit": false,
   "useExtData": true,
   "fixBadSectors": false,
+  "cloudURL": "",
+  "cloudLoginCode": "",
   "defaults": {
     "pid": 12345,
     "sid": 54321,
