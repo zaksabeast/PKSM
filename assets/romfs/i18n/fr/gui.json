@@ -80,6 +80,8 @@
     "CLEAR": "Effacer",
     "CLEVERNESS_MASTER_RIBBON": "Ruban Maître Intelligence",
     "CLONE": "Cloner",
+    "CLOUD_LOGIN_CODE": "Code nuage",
+    "CLOUD_SAVE_FAILED": "Échec de la sauvegarde",
     "CONFIG_BACKUP_INJECTION": "Activer l'injection de backups",
     "CONFIG_BACKUP_SAVE": "Archivage auto au lancement",
     "CONFIG_BAD_SECTORS": "Fix bad sectors on exit",

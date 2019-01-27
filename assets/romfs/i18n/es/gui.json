@@ -80,6 +80,8 @@
     "CLEAR": "Borrar",
     "CLEVERNESS_MASTER_RIBBON": "Cinta Estrella del Ingenio",
     "CLONE": "Clonar",
+    "CLOUD_LOGIN_CODE": "Código de nube",
+    "CLOUD_SAVE_FAILED": "Error en la nube",
     "CONFIG_BACKUP_INJECTION": "Habilitar «backup injection»",
     "CONFIG_BACKUP_SAVE": "backup automático al cargar",
     "CONFIG_BAD_SECTORS": "Arr. sectores dañados al salir",

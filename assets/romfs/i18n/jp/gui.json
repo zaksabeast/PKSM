@@ -74,6 +74,8 @@
     "CLEAR": "クリア",
     "CLEVERNESS_MASTER_RIBBON": "Cleverness Master Ribbon",
     "CLONE": "コピー",
+    "CLOUD_LOGIN_CODE": "クラウドコード",
+    "CLOUD_SAVE_FAILED": "クラウド保存に失敗しました",
     "CONFIG_BACKUP_INJECTION": "書き込み前に不思議なカードをバックアップする",
     "CONFIG_BACKUP_SAVE": "自動的にバックアップを読み込む",
     "CONFIG_BAD_SECTORS": "終了時に不良セクタを修正する",

@@ -80,6 +80,8 @@
     "CLEAR": "Pulisci",
     "CLEVERNESS_MASTER_RIBBON": "Fiocco Acume Supremo",
     "CLONE": "Clona",
+    "CLOUD_LOGIN_CODE": "Codice Cloud",
+    "CLOUD_SAVE_FAILED": "Cloud save fallito",
     "CONFIG_BACKUP_INJECTION": "Abilita scrittura nei backup",
     "CONFIG_BACKUP_SAVE": "Auto-backup al caricamento",
     "CONFIG_BAD_SECTORS": "Correggi settori all'uscita",

@@ -81,6 +81,8 @@
     "CLEAR": "Clear",
     "CLEVERNESS_MASTER_RIBBON": "Cleverness Master Ribbon",
     "CLONE": "Clone",
+    "CLOUD_LOGIN_CODE": "Cloud code",
+    "CLOUD_SAVE_FAILED": "Cloud save failed",
     "CONFIG_BACKUP_INJECTION": "Enable backup injection",
     "CONFIG_BACKUP_SAVE": "Automatically backup on load",
     "CONFIG_BAD_SECTORS": "Fix bad sectors on exit",
