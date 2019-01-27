@@ -312,6 +312,19 @@ createBank:
 bool Bank::save() const
 {
     Gui::waitFrame(i18n::localize("BANK_SAVE"));
+
+    std::string cloudURL = Configuration::getInstance().cloudURL();
+    std::string loginCode = Configuration::getInstance().cloudLoginCode();
+
+    if (!loginCode.empty() && !cloudURL.empty() && loginCode.compare("none") != 0)
+    {
+        Result res = backupToCloud(cloudURL, loginCode);
+
+        if (R_FAILED(res)) {
+          Gui::error(i18n::localize("CLOUD_SAVE_FAILED"), res);
+        }
+    }
+
     if (Configuration::getInstance().useExtData())
     {
         FSUSER_CreateDirectory(Archive::data(), fsMakePath(PATH_UTF16, u"/banks"), 0);
@@ -507,4 +520,10 @@ std::string Bank::boxName(int box) const
 void Bank::boxName(std::string name, int box)
 {
     boxNames[box] = name;
+}
+
+Result Bank::backupToCloud(std::string url, std::string loginCode) const
+{
+    std::string bankFile(reinterpret_cast<const char*>(data), size);
+    return upload(url.c_str(), loginCode.append(bankFile).c_str(), (long)size);
 }

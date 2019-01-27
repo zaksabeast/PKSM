@@ -29,6 +29,10 @@
 
 #include "Sav.hpp"
 
+extern "C" {
+#include "upload.h"
+}
+
 class Bank
 {
 public:
@@ -42,6 +46,7 @@ public:
     void resize();
     bool save() const;
     void backup() const;
+    Result backupToCloud(std::string url, std::string loginCode) const;
     std::string boxName(int box) const;
     void boxName(std::string name, int box);
 private:
