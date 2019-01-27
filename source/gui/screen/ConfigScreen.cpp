@@ -63,7 +63,7 @@ static void inputNumber(std::function<void(int)> callback, int digits, int maxVa
     }
 }
 
-static void inputOT()
+static void inputText(std::function<void(std::string)> callback, std::string hintText)
 {
     static SwkbdState state;
     static bool first = true;
@@ -72,14 +72,14 @@ static void inputOT()
         swkbdInit(&state, SWKBD_TYPE_NORMAL, 2, 12);
         first = false;
     }
-    swkbdSetHintText(&state, i18n::localize("OT_NAME").c_str());
+    swkbdSetHintText(&state, hintText.c_str());
     swkbdSetValidation(&state, SWKBD_NOTBLANK_NOTEMPTY, 0, 0);
     char input[25] = {0};
     SwkbdButton ret = swkbdInputText(&state, input, sizeof(input));
     input[24] = '\0';
     if (ret == SWKBD_BUTTON_CONFIRM)
     {
-        Configuration::getInstance().defaultOT(input);
+        callback(input);
     }
 }
 
@@ -139,11 +139,12 @@ ConfigScreen::ConfigScreen() : oldStorage(Configuration::getInstance().storageSi
     // Defaults buttons
     tabButtons[1].push_back(new Button(112, 38, 15, 12, [](){ Gui::setNextKeyboardFunc([](){ inputNumber([](u16 a){ Configuration::getInstance().defaultTID(a); }, 5, 0xFFFF); }); return false; }, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
     tabButtons[1].push_back(new Button(112, 62, 15, 12, [](){ Gui::setNextKeyboardFunc([](){ inputNumber([](u16 a){ Configuration::getInstance().defaultSID(a); }, 5, 0xFFFF); }); return false; }, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
-    tabButtons[1].push_back(new Button(112, 86, 15, 12, [](){ Gui::setNextKeyboardFunc(&inputOT); return false; }, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
+    tabButtons[1].push_back(new Button(112, 86, 15, 12, [](){ Gui::setNextKeyboardFunc([](){ inputText([](std::string config){ Configuration::getInstance().defaultOT(config); }, Configuration::getInstance().defaultOT()); }); return false; }, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
     tabButtons[1].push_back(new ClickButton(112, 110, 15, 12, &countryChoice, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
     tabButtons[1].push_back(new Button(112, 134, 15, 12, [](){ Gui::setNextKeyboardFunc([](){ inputNumber([](u16 a){ Configuration::getInstance().day(a); }, 2, 31); }); return false; }, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
     tabButtons[1].push_back(new Button(112, 158, 15, 12, [](){ Gui::setNextKeyboardFunc([](){ inputNumber([](u16 a){ Configuration::getInstance().month(a); }, 2, 12); }); return false; }, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
     tabButtons[1].push_back(new Button(112, 182, 15, 12, [](){ Gui::setNextKeyboardFunc([](){ inputNumber([](u16 a){ Configuration::getInstance().year(a); }, 4, 9999); }); return false; }, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
+    tabButtons[1].push_back(new Button(112, 206, 15, 12, [](){ Gui::setNextKeyboardFunc([](){ inputText([](std::string config){ Configuration::getInstance().cloudLoginCode(config); }, Configuration::getInstance().cloudLoginCode()); }); return false; }, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
 
     // Miscellaneous buttons
     tabButtons[2].push_back(new ClickButton(247, 39, 15, 12, [](){ Configuration::getInstance().autoBackup(!Configuration::getInstance().autoBackup()); return true; }, ui_sheet_button_info_detail_editor_light_idx, "", 0.0f, 0));
@@ -262,6 +263,7 @@ void ConfigScreen::draw() const
         Gui::staticText(i18n::localize("DAY"), 19, 132, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
         Gui::staticText(i18n::localize("MONTH"), 19, 156, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
         Gui::staticText(i18n::localize("YEAR"), 19, 180, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
+        Gui::staticText(i18n::localize("CLOUD_LOGIN_CODE"), 19, 204, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
 
         Gui::dynamicText(std::to_string(Configuration::getInstance().defaultTID()), 140, 36, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
         Gui::dynamicText(std::to_string(Configuration::getInstance().defaultSID()), 140, 60, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
@@ -298,6 +300,7 @@ void ConfigScreen::draw() const
         Gui::dynamicText(std::to_string(Configuration::getInstance().day()), 140, 132, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
         Gui::dynamicText(std::to_string(Configuration::getInstance().month()), 140, 156, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
         Gui::dynamicText(std::to_string(Configuration::getInstance().year()), 140, 180, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
+        Gui::dynamicText(Configuration::getInstance().cloudLoginCode(), 140, 204, FONT_SIZE_14, FONT_SIZE_14, COLOR_WHITE, TextPosX::LEFT, TextPosY::TOP);
 
         for (Button* button : tabButtons[currentTab])
         {
