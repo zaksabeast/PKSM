@@ -88,6 +88,18 @@ public:
         return mJson["defaults"]["ot"];
     }
 
+    std::string cloudURL(void) const
+    {
+        std::string defaultValue = "";
+        return mJson.value("cloudURL", defaultValue);
+    }
+
+    std::string cloudLoginCode(void) const
+    {
+        std::string defaultValue = "";
+        return mJson.value("cloudLoginCode", defaultValue);
+    }
+
     int nationality(void) const
     {
         return mJson["defaults"]["nationality"];
@@ -179,6 +191,16 @@ public:
     void defaultOT(std::string ot)
     {
         mJson["defaults"]["ot"] = ot;
+    }
+
+    void cloudURL(std::string url)
+    {
+        mJson["cloudURL"] = url;
+    }
+
+    void cloudLoginCode(std::string loginCode)
+    {
+        mJson["cloudLoginCode"] = loginCode;
     }
 
     void nationality(int nation)
