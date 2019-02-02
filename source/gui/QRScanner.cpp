@@ -300,7 +300,6 @@ static void camThread(void *arg)
             events[i] = 0;
         }
     }
-    svcCloseHandle(data->mutex);
     data->finished = true;
 }
 
@@ -310,6 +309,7 @@ static void uiThread(void* arg)
     qr_data* data = (qr_data*) arg;
     while (true)
     {
+        svcWaitSynchronization(data->mutex, U64_MAX);
         C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
         for (u32 x = 0; x < 400; x++)
         {
@@ -317,14 +317,16 @@ static void uiThread(void* arg)
             {
                 if (data->finished || data->tex == NULL || data->image.tex->data == NULL)
                 {
+                    svcReleaseMutex(data->mutex);
                     first = true;
                     return;
                 }
                 u32 dstPos = ((((y >> 3) * (512 >> 3) + (x >> 3)) << 6) + ((x & 1) | ((y & 1) << 1) | ((x & 2) << 1) | ((y & 2) << 2) | ((x & 4) << 2) | ((y & 4) << 3))) * 2;
                 u32 srcPos = (y * 400 + x) * 2;
-                memcpy(&((u8*)data->image.tex->data)[dstPos], &((u8*)data->camera_buffer)[srcPos], 2);
+                memcpy((u8*)data->image.tex->data + dstPos, (u8*)data->camera_buffer + srcPos, 2);
             }
         }
+        svcReleaseMutex(data->mutex);
 
         C2D_SceneBegin(g_renderTargetTop);
         C2D_DrawImageAt(data->image, 0.0f, 0.0f, 0.5f, NULL, 1.0f, 1.0f);
@@ -369,6 +371,9 @@ void QRScanner::exit(qr_data *data)
         svcSleepThread(1000000);
     }
     data->capturing = false;
+    svcWaitSynchronization(data->mutex, U64_MAX); // Wait for the end of the 
+    svcReleaseMutex(data->mutex);
+    svcCloseHandle(data->mutex);
     C3D_TexDelete(data->tex);
     free(data->camera_buffer);
     free(data->tex);

@@ -5,7 +5,6 @@
   "storageSize": 150,
   "transferEdit": false,
   "useExtData": true,
-  "fixBadSectors": false,
   "cloudURL": "",
   "cloudLoginCode": "",
   "defaults": {
