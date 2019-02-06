@@ -108,7 +108,7 @@ EditorScreen::EditorScreen(std::shared_ptr<PKX> pokemon, int box, int index)
                 pkm->metLocation(0x0006); // Route 1, SMUSUM
             case 42:
             case 43:
-                pkm->metLocation(0x0003); // Route 1, LGPE
+                pkm->metLocation(0x0032); // Go complex, LGPE
         }
         pkm->fixMoves();
         // pkm->PID((u32)randomNumbers());
