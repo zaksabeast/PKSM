@@ -216,6 +216,7 @@
     "HP_LEVEL_2": "HP Level 2",
     "HP_LEVEL_3": "HP Level 3",
     "HP": "HP",
+    "HYPER_TRAIN_FLAGS": "Hyper Train Flags",
     "INJECT_TO_SLOT": "不思議なカードの書き込み先",
     "INVALID_ABILITY": "Invalid Ability",
     "INVALID_BALL": "Invalid Ball",
@@ -486,5 +487,11 @@
     "YEAR": "年",
     "YES": "はい",
     "YOUR_OT_NAME": "あなたのトレーナー名",
+    "FEARSOME_TWIN_TALES_OF_JUTTING_JAWS": "きょうふ！ おおアゴ ツインテール",
+    "DANGER_ZIPPED_UP_TIGHT": "ひらかれる きんだんの ジッパー！",
+    "STUCK_BETWEEN_STRONG_AND_STRONG": "てつわん ごうわん ハサミうち！",
+    "DAZZLING_DIZZYING_DANCE_SPOONS": "ねんりき！ スプーン らんぶ",
+    "WHAT_UPSTART_MAGIKARP_MOVING_UP": "なりあがり！ しゅっせ コイキング",
+    "WATCH_MULTIPLE_MEGA": "きょうい！ れんぞく メガシンカ！",
     "ZCRYSTALS": "Zクリスタル"
 }

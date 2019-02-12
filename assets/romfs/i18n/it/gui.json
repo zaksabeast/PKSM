@@ -40,7 +40,7 @@
     "BANK_FAILED_EXIT": "Impossibile uscire quando tieni un Pok\u00E9mon!",
     "BANK_LOAD": "Caricamento storage...",
     "BANK_NAME_ERROR": "Impossibile salvare i nomi dei box!",
-    "BANK_OPEN_FAILED": "Impossibile avviare lo scaricamento!",
+    "BANK_OPEN_FAILED": "Impossibile aprire lo storage!",
     "BANK_SAVE_CHANGES": "Salvare i cambiamenti allo storage?",
     "BANK_SAVE_ERROR": "Impossibile salvare lo storage!",
     "BANK_SAVE": "Salvataggio storage...",
@@ -228,6 +228,7 @@
     "HYPER_SPATK": "Hyper Train Sp. Attacco",
     "HYPER_SPDEF": "Hyper Train Sp. Difesa",
     "HYPER_SPEED": "Hyper Train Velocità",
+    "HYPER_TRAIN_FLAGS": "Hyper Train Flags",
     "INJECT_TO_SLOT": "Inserisci nello slot",
     "INVALID_ABILITY": "Abilità non valida",
     "INVALID_BALL": "Ball non valida",
@@ -498,5 +499,11 @@
     "YEAR": "Anno",
     "YES": "Si",
     "YOUR_OT_NAME": "Il tuo nome allenatore",
+    "FEARSOME_TWIN_TALES_OF_JUTTING_JAWS": "Le terribili mascelle gemelle!",
+    "DANGER_ZIPPED_UP_TIGHT": "La cerniera del terrore!",
+    "STUCK_BETWEEN_STRONG_AND_STRONG": "Nella morsa di Scizor!",
+    "DAZZLING_DIZZYING_DANCE_SPOONS": "La furiosa danza di cucchiai!",
+    "WHAT_UPSTART_MAGIKARP_MOVING_UP": "La fortuna di Magikarp!",
+    "WATCH_MULTIPLE_MEGA": "Megaevoluzione a ripetizione!",
     "ZCRYSTALS": "Cristalli Z"
 }
