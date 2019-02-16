@@ -494,6 +494,10 @@ void StorageScreen::draw() const
             {
                 Gui::sprite(ui_sheet_icon_female_idx, 364 - (int) width, 80);
             }
+            else if (infoMon->gender() == 2)
+            {
+                Gui::sprite(ui_sheet_icon_genderless_idx, 364 - (int) width, 80);
+            }
             if (infoMon->shiny())
             {
                 Gui::sprite(ui_sheet_icon_shiny_idx, 352 - (int) width, 81);
@@ -1575,6 +1579,10 @@ bool StorageScreen::sort()
                     case OTNAME:
                         if (pkm1->otName() < pkm2->otName()) return true;
                         if (pkm2->otName() < pkm1->otName()) return false;
+                        break;
+                    case SHINY:
+                        if (pkm1->shiny() && !pkm2->shiny()) return true;
+                        if (pkm2->shiny() && !pkm1->shiny()) return false;
                         break;
                     default:
                         break;
