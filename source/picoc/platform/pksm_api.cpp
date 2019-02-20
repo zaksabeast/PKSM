@@ -171,19 +171,18 @@ extern "C" {
         }
         int numChars = Param[2]->Val->Integer;
 
-        char number[numChars + 1];
-        number[numChars] = '\0';
+        char number[numChars + 1] = {0};
 
         C3D_FrameEnd(0);
         
         SwkbdState state;
         swkbdInit(&state, SWKBD_TYPE_NUMPAD, 2, numChars);
         swkbdSetValidation(&state, SWKBD_NOTBLANK_NOTEMPTY, 0, 0);
-        swkbdSetButton(&state, SWKBD_BUTTON_LEFT, "What?", true);
+        swkbdSetButton(&state, SWKBD_BUTTON_LEFT, "What?", false);
         SwkbdButton button;
         do
         {
-            button = swkbdInputText(&state, number, numChars);
+            button = swkbdInputText(&state, number, sizeof(number));
             if (button != SWKBD_BUTTON_CONFIRM)
             {
                 Gui::warn(hint, hint2);
@@ -191,6 +190,7 @@ extern "C" {
             }
         }
         while (button != SWKBD_BUTTON_CONFIRM);
+        number[numChars] = '\0';
         *out = std::atoi(number);
     }
 
@@ -737,5 +737,10 @@ extern "C" {
 
         auto pkm = TitleLoader::save->pkm(slot);
         memcpy(data, pkm.get()->rawData(), pkm.get()->getLength());
+    }
+
+    void i18n_species(struct ParseState *Parser, struct Value *ReturnValue, struct Value **Param, int NumArgs)
+    {
+        ReturnValue->Val->Pointer = (void*) i18n::species(Configuration::getInstance().language(), Param[0]->Val->Integer).c_str();
     }
 }
